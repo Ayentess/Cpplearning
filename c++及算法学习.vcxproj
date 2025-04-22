@@ -130,6 +130,7 @@
     <ClCompile Include="c++算法.cpp" />
     <ClCompile Include="c++语法.cpp" />
     <ClCompile Include="c++课堂.cpp" />
+    <ClCompile Include="练习.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

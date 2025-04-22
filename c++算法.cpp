@@ -1,65 +1,145 @@
+//算法1:快速排序
 //#include <iostream>
+//#include <algorithm>
+//#include <vector>
 //using namespace std;
 //
-//// 交换函数，用于交换数组中的两个元素
-//void swap(int& a, int& b) 
+//void test01() 
 //{
-//    int temp = a;
-//    a = b;
-//    b = temp;
-//}
+//    int n;
+//    cout << "请输入数组长度：";
+//    cin >> n;
+//    vector<int> a(n);  // 改用 vector 动态分配
 //
-//// 快速排序算法实现
-//void quick_sort(int q[], int l, int r) 
-//{
-//    // 如果左边界大于或等于右边界，则直接返回
-//    if (l >= r) 
-//    return;
-//
-//    // 选取中间值作为基准点
-//    int i = l - 1, j = r + 1, x = q[(l + r) >> 1]; // 使用位运算代替除以2，提高效率
-//
-//    while (true) 
+//    cout << "请输入数组元素：";
+//    for (int i = 0; i < n; i++) 
 //    {
-//        do 
-//        { 
-//            i++;
-//        } while (q[i] < x);
-//
-//        do 
-//        {
-//            j--;
-//        } while (q[j] > x);
-//
-//        if (i < j) 
-//        {
-//            swap(q[i], q[j]);
-//        }
-//        else 
-//        {
-//            break; // 当i >= j时，退出循环
-//        }
+//        cin >> a[i];
 //    }
 //
-//    // 对左右两部分递归进行快速排序
-//    quick_sort(q, l, j);
-//    quick_sort(q, j + 1, r);
+//    sort(a.begin(), a.end());// 排序
+//
+//    for (int i = 0; i < n; i++) 
+//    {
+//        cout << a[i] << " ";
+//    }
+//
+//    cout << endl;
 //}
 //
 //int main() 
 //{
-//    int arr[] = { 3, 1, 4, 1, 5, 9, 2, 6, 5 };
-//    int n = sizeof(arr) / sizeof(arr[0]);
-//
-//    // 调用快速排序函数
-//    quick_sort(arr, 0, n - 1);
-//
-//    // 输出排序后的数组
-//    for (int i = 0; i < n; i++) 
-//    {
-//        cout << arr[i] << " ";
-//    }
-//    cout << endl;
-//
+//    test01();
+//    system("pause");  // Windows 下防止控制台闪退
 //    return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
+//
+//const int maxn = 100005;
+//
+//int n, q, x, a[maxn];
+//
+//int main() 
+//{
+//    scanf("%d%d", &n, &q);
+//    for (int i = 0; i < n; i++)
+//    {
+//        scanf("%d", &a[i]);
+//    }
+//
+//    while (q--) 
+//    {
+//        scanf("%d", &x);
+//        int l = 0, r = n - 1;
+//        while (l < r) 
+//        {
+//            int mid = l + r >> 1;
+//            if (a[mid] < x)
+//            {
+//                l = mid + 1;
+//            }
+//            else 
+//            { 
+//                r = mid; 
+//            }
+//        }
+//        if (a[l] != x) 
+//        {
+//            printf("-1 -1\n");
+//            continue;
+//        }
+//
+//        int l1 = l, r1 = n;
+//        while (l1 + 1 < r1) 
+//        {
+//            int mid = l1 + r1 >> 1;
+//            if (a[mid] <= x) 
+//            {
+//                l1 = mid; 
+//            }
+//            else 
+//            { 
+//                r1 = mid;
+//            } 
+//        }
+//        printf("%d %d\n", l, l1);
+//    }
+//    return 0;
+//}
+
+//算法2:二分查找
+
+//int L = -1, R = n;
+//while (L + 1 != R)
+//{
+// 
+//    int mid = L + R >> 1;
+//    if (check()) L = mid;
+//    else R = mid;
+//    //最后根据你所分左右两边区间的结果
+//    //选取L或者R作为结果
+//}模板
+
+//#include<iostream>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n, m, q[N];
+//int main()
+//{
+//    scanf("%d %d", &n, &m);
+//    for (int i = 0; i < n; i++) scanf("%d", &q[i]);
+//    while (m--)
+//    {
+//        int k; scanf("%d", &k);
+//        //寻找第一个等于K的坐标 我这边让二分的边界定为 左边为<5 右边>=5 则所求为r
+//        int l = -1, r = n;
+//        while (l + 1 != r)//当l与r没有相接的时候,求边界
+//        {
+//            int mid = l + r >> 1;
+//            //下面找第一个>=5的坐标
+//            if (q[mid] >= k) r = mid;
+//            else l = mid;
+//        }
+//        //此时得到的r是第一个>=5的坐标
+//        if (q[r] != k) printf("-1 -1\n");
+//        else 
+//        {
+//            printf("%d ", r);
+//            //现在找最后一个<=5的数字 我这边让二分的左边为<=5 右边为>5 则所求为ll
+//            int ll = -1, rr = n;
+//            while (ll + 1 != rr)
+//            {
+//
+//                int mid = ll + rr >> 1;
+//                if (q[mid] <= k) ll = mid;
+//                else rr = mid;
+//            }
+//            if (q[ll] != k) printf("%d\n", r);
+//            else printf("%d\n", ll);
+//        }
+//
+//    }
+//
 //}

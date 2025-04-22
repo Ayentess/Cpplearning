@@ -1797,3 +1797,152 @@
 //    return 0;
 //}
 
+//N个学生数据，包括学号、姓名、成绩，要求输出这些学生数据并计算平均分。
+// 设计一个学生类，包括学号、姓名和成绩数据成员外，
+// 还有两个静态变量sum和num，分别存放总分和人数，另有两个普通成员函数setdata()和disp()，
+// 分别用于给数据成员赋值和输出数据成员的值，另有一个静态成员函数avg()，它用于计算平均分。
+// 在main()函数中定义了一个对象数组用于存储输入的学生数据。
+//#include<iostream>
+//using namespace std;
+//#include<string>
+//
+//class Student
+//{
+//public:
+//    void setdata();
+//
+//    void disp();
+//
+//    static void avg();
+//
+//private:
+//    int m_non;
+//    string m_name;
+//    double m_score;
+//    static double sum;
+//    static int num;
+//};
+//
+//double Student::sum = 0.0;//初始化静态变量
+//int Student::num = 0;//初始化静态变量
+//
+//void Student::setdata()
+//{
+//    cout << "请输入学号：";
+//    cin >> m_non;
+//    cout << "请输入姓名：";
+//    cin >> m_name;
+//    cout << "请输入成绩：";
+//    cin >> m_score;
+//    sum += m_score;
+//    num++;
+//}
+//
+//void Student::disp()
+//{
+//    cout << "学号：" << m_non << endl;
+//    cout << "姓名：" << m_name << endl;
+//    cout << "成绩：" << m_score << endl;
+//}
+//
+//void Student::avg()
+//{
+//    double avg=sum / num;
+//    cout << "平均成绩：" << avg << endl;
+//}
+//
+//int main()
+//{
+//    Student stu[3];
+//    int n;
+//    cout << "请输入学生人数：";
+//    cin >> n;
+//    for (int i = 0; i < n; i++)
+//    {
+//        stu[i].setdata();
+//    }
+//    for (int i = 0; i < n; i++)
+//    {
+//        stu[i].disp();
+//    }
+//
+//    stu[0].avg();
+//
+//    system("pause");
+//    return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//#include<string>
+//
+//class Student
+//{
+//public:
+//    void setdata();
+//
+//    void disp();
+//
+//    static void avg();
+//
+//private:
+//    int m_non;
+//    string m_name;
+//    double m_score;
+//    static double sum;
+//    static int num;
+//};
+//
+//double Student::sum = 0.0;//初始化静态变量
+//int Student::num = 0;//初始化静态变量
+//
+//void Student::setdata()
+//{
+//    cout << "请输入学号：";
+//    cin >> m_non;
+//    cout << "请输入姓名：";
+//    cin >> m_name;
+//    cout << "请输入成绩：";
+//    cin >> m_score;
+//    sum += m_score;
+//    num++;
+//}
+//
+//void Student::disp()
+//{
+//    cout << "学号：" << m_non << endl;
+//    cout << "姓名：" << m_name << endl;
+//    cout << "成绩：" << m_score << endl;
+//}
+//
+//void Student::avg()
+//{
+//    double avg = sum / num;
+//    cout << "平均成绩：" << avg << endl;
+//}
+//
+//int main()
+//{
+//
+//    int n;
+//    cout << "请输入学生人数：";
+//    cin >> n;
+//
+//    Student* stu = new Student[n];
+//
+//    for (int i = 0; i < n; i++)
+//    {
+//        stu[i].setdata();
+//    }
+//    for (int i = 0; i < n; i++)
+//    {
+//        stu[i].disp();
+//    }
+//
+//    delete[] stu;
+//
+//    Student::avg();
+//
+//    system("pause");
+//    return 0;
+//}

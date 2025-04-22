@@ -24,5 +24,8 @@
     <ClCompile Include="c++课堂.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="练习.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
