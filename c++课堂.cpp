@@ -871,3 +871,473 @@
 //    system("pause");
 //    return 0;
 //}
+
+//#include<iostream>
+//using namespace std;
+//
+//class Base
+//{
+//private:
+//	int base_priv_dat;
+//protected:
+//	int base_prot_dat;
+//public:
+//	void base_show();
+//};
+//class Derived :public Base
+//{
+//private:
+//	int derived_priv_dat;
+//public:
+//	void derived_show();
+//};
+//void Base::base_show()
+//{
+//	base_priv_dat = 1;  //基类函数可以操纵私有和保护型基类数据
+//	base_prot_dat = 2;
+//	cout << "base_priv_dat=" << base_priv_dat << '\t'
+//		<< "	base_prot_dat=" << base_prot_dat << endl;
+//}
+//void Derived::derived_show()
+//{
+//	derived_priv_dat = 3;
+//	base_prot_dat = 4;  //派生函数可以处理保护型基类数据，但不能处理私有基类数据
+//	cout << "derived_priv_dat=" << derived_priv_dat << '\t'
+//		<< "base_prot_dat=" << base_prot_dat << endl;
+//
+//	base_show();   //派生函数可以调用公有基类函数
+//}
+//int main()
+//{
+//	Derived d_obj;
+//	d_obj.base_show();   //可用派生对象调用基类函数
+//	d_obj.derived_show();
+//	return(0);
+//}
+
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//class Person
+//{
+//public:
+//	Person(const char* s)  //带参数的构造函数
+//	{
+//		name = new char[strlen(s) + 1];
+//		strcpy(name, s);
+//	}
+//	~Person() { delete[]name; }   //析构函数做清理工作
+//	char* GetName() { return name; }
+//protected:
+//	char* name;
+//};
+//class Student :public Person
+//{
+//	char* major;
+//public:
+//	Student(const char* s, const char* m) :Person(s)    //派生类构造函数
+//	{
+//		major = new char[strlen(m) + 1]; strcpy(major, m);
+//	}
+//	~Student() { delete[] major; }       //派生类析构函数
+//	char* GetMajor() { return major; }
+//};
+//int main()
+//{
+//	Student stu("WZQ", "Electric automatization");
+//	cout << "student Name is:" << stu.GetName() << "  Major is:"
+//		<< stu.GetMajor() << endl;
+//	return(0);
+//}
+
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//class Person
+//{
+//public:
+//	Person(string the_name, string the_gender, string  the_id)
+//	{
+//		name = the_name;
+//		gender = the_gender;
+//		id_number = the_id;
+//		cout << "Person类构造函数被调用！" << endl;
+//	}
+//	void show()
+//	{
+//		cout << "姓名：" << name << endl;
+//		cout << "性别：" << gender << endl;
+//		cout << "身份证号码：" << id_number << endl;
+//	}
+//protected:
+//	string name;			//姓名
+//	string gender;            //性别
+//	string id_number;       //身份证号码
+//};
+//
+//class Student : public Person
+//{
+//public:
+//	Student(string n, string g, string i, string c) :Person(n, g, i)
+//	{
+//		classname = c;
+//		cout << "Student类构造函数被调用！" << endl;
+//	}
+//protected:
+//	string classname;			//学生所在班级
+//};
+//
+//class Teacher : public Person
+//{
+//public:
+//	Teacher(string n, string g, string i, string d) :Person(n, g, i)
+//	{
+//		department = d;
+//		cout << "Teacher类构造函数被调用！" << endl;
+//	}
+//protected:
+//	string department;			//教师所在单位
+//};
+//
+//class Assistant :public Student, public Teacher
+//{
+//public:
+//	Assistant(string n, string g, string i, string c, string d) :Student(n, g, i, c), Teacher(n, g, i, d)
+//	{
+//	}
+//	void disp()
+//	{
+//		show();
+//		cout << "班级：" << classname << endl;
+//		cout << "系部：" << department << endl;
+//	}
+//};
+//int main()
+//{
+//	Assistant a("李玮", "男", "420300199212032323", "软件141", "电信系");
+//	a.disp();
+//	return 0;
+//
+//}
+
+//开发一个简单的大学人员管理程序，该程序可以管理大学的一些基本人员：
+//学生（student）、教师（teacher）。
+//首先设计一个虚基类person。通过该类保存人员的最基本信息：姓名（name）、年龄（age）、性别（sex）和身份证号码。
+//然后使用该类派生出学生类student、教师类teacher，在其中添加各自的特性，
+//如在student类中添加如下信息：专业（speciality），在teacher类中添加院系（department）等。
+//还有部分教师在工作的同时在职修读学位，因此同时具有教师和学生双重身份，
+//所以由student类和teacher类再次派生出stuTeacher类。为每个类定义一个输出函数print()，
+//输出该类相关信息。
+
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//
+//class Person
+//{
+//public:
+//	Person(string name, int age, string sex, string id);
+//
+//	void virtual Print();
+//
+//protected:
+//	string m_name;
+//	int m_age;
+//	string m_sex;
+//	string m_id;
+//};
+//
+//Person::Person(string name, int age, string sex, string id)
+//{
+//	m_name = name;
+//    m_age = age;
+//    m_sex = sex;
+//    m_id = id;
+//}
+//
+//void Person::Print()
+//{
+//	cout << "姓名：" << m_name << endl;
+//    cout << "年龄：" << m_age << endl;
+//    cout << "性别：" << m_sex << endl;
+//    cout << "身份证号码：" << m_id << endl;
+//}
+//
+//class Student :virtual public Person
+//{
+//public:
+//	Student(string name, int age, string sex, string id, string speciality): Person(name, age, sex, id)
+//	{
+//		m_speciality = speciality;
+//	}
+//
+//	void Print()
+//	{
+//		Person::Print();
+//		cout << "专业：" << m_speciality << endl;
+//	}
+//
+//protected:
+//		string m_speciality;
+//};
+//
+//class Teacher :virtual public Person
+//{
+//public:
+//	Teacher(string name, int age, string sex, string id, string department) : Person(name, age, sex, id)
+//	{
+//		m_department = department;
+//	}
+//
+//	void Print()
+//	{
+//		Person::Print();
+//		cout << "院系：" << m_department << endl;
+//	}
+//
+//protected:
+//	string m_department;
+//};
+//
+//class stuTeacher :public Student, public Teacher
+//{
+//public:
+//	stuTeacher(string name, int age, string sex, string id,string speciality,string department) :Person(name, age, sex, id),  Student(name, age, sex, id, speciality), Teacher(name, age, sex, id, department)
+//	{
+//
+//	}
+//
+//	void Print()
+//	{
+//		Student::Print();
+//		cout << "院系：" << m_department << endl;
+//	}
+//};
+//
+//void test()
+//{
+//	string name, sex, id, speciality, department;
+//    int age;
+//	int choice;
+//
+//	cout << "请输入姓名:";
+//    cin >> name;
+//    cout << "请输入年龄:";
+//    cin >> age;
+//    cout << "请输入性别:";
+//    cin >> sex;
+//    cout << "请输入身份证号码:";
+//    cin >> id;
+//
+//	cout << "请选择您的身份："<<endl;
+//	cout << "1.学生" << endl;
+//    cout << "2.教师" << endl;
+//    cout << "3.学生兼教师" << endl;
+//	cin >> choice;
+//
+//	switch (choice)
+//	{
+//		case 1:
+//		{
+//            cout << "请输入专业：";
+//            cin >> speciality;
+//            Student stu(name, age, sex, id, speciality);
+//            stu.Print();
+//            break;
+//		}  
+//
+//        case 2:
+//		{
+//            cout << "请输入院系：";
+//            cin >> department;
+//            Teacher tea(name, age, sex, id, department);
+//            tea.Print();
+//            break;
+//		}
+//            
+//        case 3:
+//		{
+//            cout << "请输入专业：";
+//            cin >> speciality;
+//            cout << "请输入院系：";
+//            cin >> department;
+//            stuTeacher sttea(name, age, sex, id, speciality, department);
+//            sttea.Print();
+//			break;
+//		}
+//            
+//		default:
+//		{
+//            cout << "输入错误！" << endl;
+//            break;
+//		}
+//
+//	}
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+#include<iostream>
+using namespace std;
+
+class Complex
+{
+public:
+	Complex() {};//构造函数空实现
+	Complex(double real, double image);
+
+	void Print();
+
+	Complex operator+(const Complex& c)
+	{
+		Complex temp;
+		temp.m_real=this->m_real+c.m_real;
+		temp.m_image=this->m_image+c.m_image;
+		return temp;
+	}
+
+	Complex operator-(const Complex& c)
+	{
+		Complex temp;
+		temp.m_real = this->m_real - c.m_real;
+		temp.m_image = this->m_image - c.m_image;
+		return temp;
+	}
+
+	Complex operator*(const Complex& c)
+	{
+		Complex temp;
+		temp.m_real = this->m_real * c.m_real- this->m_image * c.m_image;
+		temp.m_image = this->m_image * c.m_real+ this->m_real * c.m_image;
+		return temp;
+	}
+
+	Complex operator/(const Complex& c)
+	{
+		double numb1;//实部分子
+		double numb2;//虚部分子
+		double denom;
+		numb1 = this->m_real * c.m_real + this->m_image * c.m_image;
+		numb2 = this->m_image * c.m_real - this->m_real * c.m_image;
+        denom = c.m_real * c.m_real + c.m_image * c.m_image;
+
+		Complex temp;
+		temp.m_real = numb1 / denom;
+		temp.m_image = numb2 / denom;
+		return temp;
+	}
+
+
+	double m_real;
+	double m_image;
+};
+
+Complex::Complex(double real, double image)
+{
+	m_real = real;
+	m_image = image;
+}
+
+void Complex::Print()
+{
+	if (m_real == 0 && m_image == 0)
+	{
+		cout << "0" << endl;
+	}
+	else if (m_real == 0 && m_image != 0)
+	{
+		cout << m_image << "i" << endl;
+	}
+	else if (m_real != 0 && m_image == 0)
+	{
+		cout << m_real << endl;
+	}
+	else
+	{
+		cout << m_real << " + " << m_image << "i" << endl;
+	}
+}
+
+void test()
+{
+	double x1, y1;
+	cout << "请输入第一个复数的实部：" << endl;
+	cin >> x1;
+	cout << "请输入第一个复数的虚部：" << endl;
+	cin >> y1;
+	Complex c1(x1, y1);
+
+	double x2, y2;
+	cout << "请输入第二个复数的实部：" << endl;
+	cin >> x2;
+	cout << "请输入第二个复数的虚部：" << endl;
+	cin >> y2;
+	Complex c2(x2, y2);
+
+	Complex c3;
+
+	while (1)
+	{
+		int chioce;
+		cout << "请选择想要实现的方法:" << endl;
+		cout << "1.加法" << endl;
+		cout << "2.减法" << endl;
+		cout << "3.乘法" << endl;
+		cout << "4.除法" << endl;
+        cout << "5.退出" << endl;
+		cin >> chioce;
+
+
+		switch (chioce)
+		{
+			case 1:
+				{
+					c3 = c1 + c2;
+					c3.Print();
+					break;
+				}
+			case 2:
+				{
+					c3 = c1 - c2;
+					c3.Print();
+					break;
+				}
+			case 3:
+				{
+					c3 = c1 * c2;
+					c3.Print();
+					break;
+				}
+			case 4:
+				{
+					c3 = c1 / c2;
+					c3.Print();
+					break;
+				}
+			case 5:
+				{
+					cout << "已退出" << endl;
+					return;
+				}
+			default:
+				{
+					cout << "输入错误" << endl;
+					break;
+				}
+		}
+	}
+}
+
+
+
+int main()
+{
+	test();
+	system("pause");
+	return 0;
+}

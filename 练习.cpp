@@ -256,42 +256,42 @@
 //    return 0;
 //}
 
-#include<iostream>
-using namespace std;
-#include<vector>
-#include<algorithm>
-
-void test()
-{
-	vector<int>a;
-
-	int n;
-	cin>>n;
-
-	for (int i = 0; i < n; i++)
-	{
-		cin >> a[i];
-	}
-
-	sort(a.begin(), a.end());
-
-	int k;
-	cin >> k;
-	bool ret=binary_search(a.begin(), a.end(), k);
-
-	if (ret)
-	{
-        cout << "YES" << endl;
-	}
-	else
-	{
-        cout << "NO" << endl;
-	}
-}
-
-int main()
-{
-	test();
-	system("pause");
-	return 0;
-}
+//#include<iostream>
+//using namespace std;
+//#include<vector>
+//#include<algorithm>
+//
+//void test()
+//{
+//	vector<int>a;
+//
+//	int n;
+//	cin>>n;
+//
+//	for (int i = 0; i < n; i++)
+//	{
+//		cin >> a[i];
+//	}
+//
+//	sort(a.begin(), a.end());
+//
+//	int k;
+//	cin >> k;
+//	bool ret=binary_search(a.begin(), a.end(), k);
+//
+//	if (ret)
+//	{
+//        cout << "YES" << endl;
+//	}
+//	else
+//	{
+//        cout << "NO" << endl;
+//	}
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
