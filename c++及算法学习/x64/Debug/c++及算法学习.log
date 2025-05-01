@@ -1,7 +1,7 @@
 ﻿  c++算法.cpp
-  练习.cpp
-  正在生成代码...
-D:\vs2022Project\c++及算法学习\练习.cpp(341,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-D:\vs2022Project\c++及算法学习\练习.cpp(346,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-D:\vs2022Project\c++及算法学习\练习.cpp(353,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\vs2022Project\c++及算法学习\c++算法.cpp(319,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\vs2022Project\c++及算法学习\c++算法.cpp(336,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\vs2022Project\c++及算法学习\c++算法.cpp(341,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\vs2022Project\c++及算法学习\c++算法.cpp(349,14): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\vs2022Project\c++及算法学习\c++算法.cpp(359,14): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   c++及算法学习.vcxproj -> D:\vs2022Project\c++及算法学习\x64\Debug\c++及算法学习.exe
