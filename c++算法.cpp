@@ -490,61 +490,225 @@
 //    return 0;
 //}
 
-#include<iostream>
-#include<string>
-#include<vector>
-#include<algorithm>
+//#include<iostream>
+//#include<string>
+//#include<vector>
+//#include<algorithm>
+//
+//using namespace std;
+//
+//vector<int> div(vector<int>& A, int b, int& r)
+//{
+//    vector<int>C;
+//    r = 0;
+//
+//    for (int i = A.size() - 1; i >= 0; i--)
+//    {
+//        r = r * 10 + A[i];
+//        C.push_back(r / b);
+//        r %= b;
+//    }
+//
+//    reverse(C.begin(), C.end());
+//
+//    while (C.size() > 1 && C.back() == 0)
+//    {
+//        C.pop_back();
+//    }
+//    return C;
+//}
+//
+//void test()
+//{
+//    string a;
+//    int b;
+//    cin >> a >> b;
+//
+//    vector<int>A;
+//
+//    for (int i = a.size() - 1; i >= 0; i--)
+//    {
+//        A.push_back(a[i] - '0');
+//    }
+//
+//    int r;
+//    auto C = div(A, b, r);
+//
+//    for (int i = C.size()-1; i >= 0; i--)
+//    {
+//        cout << C[i];
+//    }
+//    cout << endl;
+//    cout << r;
+//}
+//
+//int main()
+//{
+//    test();
+//    system("pause");
+//    return 0;
+//}
 
-using namespace std;
+//#include<iostream>
+//
+//using namespace std;
+//
+//const int N = 100010;
+//
+//int main()
+//{
+//	int n, m;// n为数组长度，m为询问次数
+//	int a[N], S[N];
+//
+//	cin >> n >> m;
+//
+//	for (int i = 1; i <= n; i++)
+//	{
+//		cin >> a[i];
+//	}
+//
+//	for (int i = 1; i <= n; i++)
+//	{
+//        S[i] = S[i - 1] + a[i];
+//	}
+//
+//	while (m--)
+//	{
+//		int l, r;
+//		cin >> l >> r;
+//		cout << S[r] - S[l - 1] << endl;
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
 
-vector<int> div(vector<int>& A, int b, int& r)
-{
-    vector<int>C;
-    r = 0;
+//#include<iostream>
+//
+//using namespace std;
+//
+//const int N = 1010;
+//
+//void test()
+//{
+//	int n, m, q;
+//	cin>> n >> m >> q;
+//
+//	int S[N][N];
+//	int a[N][N];
+//
+//	for (int i = 1; i <= n; i++)
+//	{
+//		for (int j = 1; j <= m; j++)
+//		{
+//			cin>> a[i][j];
+//		}
+//	}
+//
+//	for (int i = 1; i <= n; i++)
+//	{
+//		for (int j = 1; j <= m; j++)
+//		{
+//			S[i][j]=S[i][j-1]+S[i-1][j]-S[i-1][j-1]+a[i][j];//  S[i][j]表示从(1,1)到(i,j)的元素和
+//		}
+//	}
+//
+//	while (q--)
+//	{
+//        int x1, y1, x2, y2;
+//		cin>> x1 >> y1 >> x2 >> y2;
+//		cout<<S[x2][y2]-S[x2][y1-1]-S[x1-1][y2]+S[x1-1][y1-1]<<endl;//求子矩阵的和
+//	}
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
 
-    for (int i = A.size() - 1; i >= 0; i--)
-    {
-        r = r * 10 + A[i];
-        C.push_back(r / b);
-        r %= b;
-    }
+//#include<iostream>
+//
+//using namespace std;
+//
+//const int N = 100010;
+//
+//void test()
+//{
+//	int n, m;
+//	cin >> n >> m;
+//
+//	int a[N], b[N];
+//
+//    for (int i = 1; i <= n; i++)
+//	{
+//		cin >> a[i];
+//		b[i] = a[i] - a[i - 1];
+//	}
+//
+//	int l, r,c;
+//
+//	while (m--)
+//	{
+//        cin >> l >> r >> c;
+//		b[l] += c;
+//        b[r + 1] -= c;
+//	}
+//
+//	for (int i = 1; i <= n; i++)
+//	{
+//        a[i] = a[i - 1] + b[i];
+//        cout << a[i] << " ";
+//	}
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
 
-    reverse(C.begin(), C.end());
-
-    while (C.size() > 1 && C.back() == 0)
-    {
-        C.pop_back();
-    }
-    return C;
-}
-
-void test()
-{
-    string a;
-    int b;
-    cin >> a >> b;
-
-    vector<int>A;
-
-    for (int i = a.size() - 1; i >= 0; i--)
-    {
-        A.push_back(a[i] - '0');
-    }
-
-    int r;
-    auto C = div(A, b, r);
-
-    for (int i = C.size()-1; i >= 0; i--)
-    {
-        cout << C[i];
-    }
-    cout << endl;
-    cout << r;
-}
-
-int main()
-{
-    test();
-    system("pause");
-    return 0;
-}
+//#include<iostream>
+//
+//using namespace std;
+//
+//const int N = 100010;
+//
+//void test()
+//{
+//    int n, m;
+//    cin >> n >> m;
+//
+//    int a[N];
+//    int b[N];
+//
+//    for (int i = 1; i <= n; i++)
+//    {
+//        cin >> a[i];
+//        b[i] = a[i] - a[i - 1];
+//    }
+//
+//    int r, l, c;
+//
+//    while (m--)
+//    {
+//        cin >> l >> r >> c;
+//        b[l] += c;
+//        b[r + 1] -= c;
+//    }
+//
+//    for (int i = 1; i <= n; i++)
+//    {
+//        a[i] = b[i] + a[i - 1];
+//        cout << a[i] << " ";
+//    }
+//}
+//
+//int main()
+//{
+//    test();
+//    system("pause");
+//    return 0;
+//}
