@@ -1341,3 +1341,249 @@
 //	system("pause");
 //	return 0;
 //}
+
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	const char* str = "How are you!";
+//	cout << str << endl;
+//	cout.write(str, 8);
+//	cout.put('\n');
+//	cout.write(str + 4, 8);
+//	cout.put('\n');
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//const int SIZE = 30;
+//
+//int main()
+//{
+//	char buffer[SIZE];
+//	cout << "Enter a sentence with cin>>:" << endl;
+//	cin >> buffer;
+//	cout << "The sentence is:" << buffer << endl;
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//const int SIZE = 30;
+//int main()
+//{
+//	char buffer[SIZE];
+//	cout << "Enter a sentence with cin.get():" << endl;
+//	cin.get(buffer, SIZE);   //默认以换行符结束
+//	cout << "The sentence is:" << buffer << endl;
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//const int SIZE = 30;
+//int main()
+//{
+//	char buffer[SIZE];
+//	cout << "Enter a sentence with cin.getline():" << endl;
+//	cin.getline(buffer, SIZE, '?');	   //以字符?作为终止符
+//	cout << "The sentence is:" << buffer << endl;
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//const int SIZE = 30;
+//int main()
+//{
+//	char buffer[SIZE];
+//	cout << "Enter a sentence with cin.read():" << endl;
+//	cin.read(buffer, 18);     //从输入流提取18字节写入字符数组
+//	cout << "The sentence is:" << buffer << endl;
+//	return 0;
+//}
+
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main()
+//{
+//	int x = 123;
+//	float y = 456.789;
+//	cout << setw(8) << x << endl << y << endl;  //设置域宽为8
+//	cout << setprecision(4) << y << endl;   //设置浮点数有效位
+//	cout << setiosflags(ios::scientific) << y << endl;//设置科学记数法
+//	cout << resetiosflags(ios::scientific);   //取消科学记数法
+//	cout << setiosflags(ios::fixed) << setprecision(4) << y << endl;//设置定点表示及小数位数
+//	cout << setiosflags(ios::dec) << setiosflags(ios::left) << setfill('#') << setw(8) << x << endl;
+//	cout << dec << x << endl;
+//	cout << oct << x << endl;
+//	cout << hex << x << endl;
+//	cout << setiosflags(ios::showbase);  //设置输出时带有基数标志
+//	cout << dec << x << endl;
+//	cout << oct << x << endl;
+//	cout << hex << x << endl;
+//	return 0;
+//}
+
+//按一行一行的方法将一个文本文件复制到另一个文件中
+//#include<iostream>
+//#include<fstream>
+//
+//using namespace std;
+//
+//int main()
+//{
+//	ifstream infile;
+//	infile.open("test01.txt", ios::in);
+//	ofstream outfile;
+//	outfile.open("test02.txt", ios::out);
+//
+//	if (!infile)
+//	{
+//		cout << "打开文件失败" << endl;
+//		return 1;
+//	}
+//	char ch;
+//
+//	while (infile.get(ch))
+//	{
+//		outfile.put(ch);
+//	}
+//
+//	infile.close();
+//	outfile.close();
+//
+//	return 0;
+//}
+
+
+//打开指定的一个文本文件，在每一行前面加上行号
+
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<vector>
+
+using namespace std;
+
+int main()
+{
+	fstream iofile;
+	iofile.open("test03.txt", ios::in);
+
+	if (!iofile)
+	{
+		cout << "打开文件失败" << endl;
+		return 1;
+	}
+
+	vector<string> lines;
+	string line;//line存储每一行字符串
+	int linenum = 1;
+
+	while (getline(iofile,line))//getline读取每一行字符串
+	{
+		lines.push_back(line);//存储在容器中
+	}
+    iofile.close();
+
+	fstream outfile;
+	outfile.open("test03.txt", ios::out);
+
+	for (int i = 0; i < lines.size(); i++)
+	{
+		outfile<<linenum<<":"<<lines[i]<<endl;
+		linenum++;
+	}
+	outfile.close();
+
+	cout << "插入行数成功！" << endl;
+
+	return 0;
+}
+
+//#include<iostream>
+//#include<fstream>
+//#include<vector>
+//
+//using namespace std;
+//
+//class Student
+//{
+//    friend void test();
+//public:
+//	Student();
+//
+//    void GetAverage();
+//
+//protected:
+//	char m_name[64];
+//	char m_id[64];
+//	double m_math;
+//	double m_english;
+//	double m_chinese;
+//    double m_average;
+//};
+//
+//Student::Student()
+//{
+//	cout<< "请输入姓名：" << endl;
+//    cin >> m_name;
+//    cout<< "请输入学号：" << endl;
+//    cin >> m_id;
+//    cout<< "请输入数学成绩：" << endl;
+//    cin >> m_math;
+//    cout<< "请输入英语成绩：" << endl;
+//    cin >> m_english;
+//    cout<< "请输入语文成绩：" << endl;
+//    cin >> m_chinese;
+//    GetAverage();
+//}
+//
+//void Student::GetAverage()
+//{
+//    double avg = (m_math + m_english + m_chinese) / 3;
+//    m_average=avg;
+//}
+//
+//void test()
+//{
+//    ofstream outfile;
+//    outfile.open("test04.txt", ios::out|ios::binary);
+//
+//    if (!outfile)
+//    {
+//        cout<< "打开文件失败" << endl;
+//        exit(1);
+//    }
+//
+//    vector<Student> students;
+//
+//    for (int i = 0; i < 5; i++)
+//    {
+//        cout<< "请输入第" << i + 1 << "个学生的信息：" << endl;
+//        students.push_back(Student());
+//    }
+//
+//    for (int i = 0; i < students.size(); i++)
+//    {
+//        outfile.write((char*)&students[i].m_name, sizeof(students[i].m_name));
+//        outfile.write((char*)&students[i].m_id, sizeof(students[i].m_id));
+//        outfile.write((char*)&students[i].m_math, sizeof(students[i].m_math));
+//        outfile.write((char*)&students[i].m_english, sizeof(students[i].m_english));
+//        outfile.write((char*)&students[i].m_chinese, sizeof(students[i].m_chinese));
+//        outfile.write((char*)&students[i].m_average, sizeof(students[i].m_average));
+//    }
+//
+//    outfile.close();
+//
+//    cout<< "写入文件成功" << endl;
+//}
+//
+//int main()
+//{
+//    test();
+//	return 0;
+//}
