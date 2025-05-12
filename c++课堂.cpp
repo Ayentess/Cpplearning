@@ -1461,48 +1461,48 @@
 
 //打开指定的一个文本文件，在每一行前面加上行号
 
-#include<iostream>
-#include<fstream>
-#include<string>
-#include<vector>
-
-using namespace std;
-
-int main()
-{
-	fstream iofile;
-	iofile.open("test03.txt", ios::in);
-
-	if (!iofile)
-	{
-		cout << "打开文件失败" << endl;
-		return 1;
-	}
-
-	vector<string> lines;
-	string line;//line存储每一行字符串
-	int linenum = 1;
-
-	while (getline(iofile,line))//getline读取每一行字符串
-	{
-		lines.push_back(line);//存储在容器中
-	}
-    iofile.close();
-
-	fstream outfile;
-	outfile.open("test03.txt", ios::out);
-
-	for (int i = 0; i < lines.size(); i++)
-	{
-		outfile<<linenum<<":"<<lines[i]<<endl;
-		linenum++;
-	}
-	outfile.close();
-
-	cout << "插入行数成功！" << endl;
-
-	return 0;
-}
+//#include<iostream>
+//#include<fstream>
+//#include<string>
+//#include<vector>
+//
+//using namespace std;
+//
+//int main()
+//{
+//	fstream iofile;
+//	iofile.open("test03.txt", ios::in);
+//
+//	if (!iofile)
+//	{
+//		cout << "打开文件失败" << endl;
+//		return 1;
+//	}
+//
+//	vector<string> lines;
+//	string line;//line存储每一行字符串
+//	int linenum = 1;
+//
+//	while (getline(iofile,line))//getline读取每一行字符串
+//	{
+//		lines.push_back(line);//存储在容器中
+//	}
+//    iofile.close();
+//
+//	fstream outfile;
+//	outfile.open("test03.txt", ios::out);
+//
+//	for (int i = 0; i < lines.size(); i++)
+//	{
+//		outfile<<linenum<<":"<<lines[i]<<endl;
+//		linenum++;
+//	}
+//	outfile.close();
+//
+//	cout << "插入行数成功！" << endl;
+//
+//	return 0;
+//}
 
 //#include<iostream>
 //#include<fstream>
@@ -1586,4 +1586,162 @@ int main()
 //{
 //    test();
 //	return 0;
+//}
+
+
+//#include<iostream>
+//#include<vector>
+//#include<algorithm>
+//
+//using namespace std;
+//
+//void test()
+//{
+//	int n, m;
+//	cin >> n >> m;
+//
+//	vector<int>a;
+//	a.resize(n);
+//
+//	for (int i = 0; i < n; i++)
+//	{
+//		cin >> a[i];
+//	}
+//
+//    sort(a.begin(), a.end());
+//
+//	while (m--)
+//	{
+//		int k;
+//		cin >> k;
+//
+//		int r = n;
+//		int l = -1;
+//		while (l + 1 != r)
+//		{
+//			int mid = (l + r) / 2;
+//
+//			if (a[mid] >= k)
+//			{
+//                r = mid;
+//			}
+//			else
+//			{
+//                l = mid;
+//			}
+//		}
+//
+//		if (r == n || a[r] != k)
+//		{
+//			cout << "-1 -1" <<endl;
+//		}
+//		else
+//		{
+//			cout << r <<" ";
+//			int ll = -1;
+//			int rr = n;
+//
+//			while (ll + 1 != rr)
+//			{
+//                int mid = (ll + rr) / 2;
+//
+//				if (a[mid] <= k)
+//				{
+//                    ll = mid;
+//				}
+//				else
+//				{
+//                    rr = mid;
+//				}
+//			}
+//
+//			if (a[ll] != k)//
+//			{
+//				cout << r << endl;//没找到
+//			}
+//			else
+//			{
+//				cout << ll << endl;//找到了
+//			}
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//
+//const int N = 100010;
+//
+//void merge_sort(int a[], int l, int r,int temp[])
+//{
+//    if (l >= r)
+//    {
+//        return;
+//    }
+//
+//    int mid = (r + l) >> 1;
+//
+//    merge_sort(a, l, mid,temp);
+//
+//    merge_sort(a, mid + 1, r,temp);
+//
+//    int k = 0;
+//
+//    int i = l;
+//    int j = mid + 1;
+//
+//    while (i <= mid && j <= r)
+//    {
+//        if (a[i] < a[j])
+//        {
+//            temp[k++] = a[i++];
+//        }
+//        else
+//        {
+//            temp[k++] = a[j++];
+//        }
+//    }
+//
+//    while (i <= mid)
+//    {
+//        temp[k++] = a[i++];
+//    }
+//
+//    while (j <= r)
+//    {
+//        temp[k++] = a[j++];
+//    }
+//
+//    k = 0;
+//    for (int i = l; i <= r; i++)
+//    {
+//        a[i] = temp[k++];
+//    }
+//}
+//
+//int main()
+//{
+//    int n;
+//    cin >> n;
+//
+//    int a[N], temp[N];
+//
+//    for (int i = 0; i < n; i++)
+//    {
+//        cin >> a[i];
+//    }
+//
+//    merge_sort(a, 0, n - 1,temp);
+//
+//    for (int i = 0; i < n; i++)
+//    {
+//        cout << a[i] << " ";
+//    }
+//    return 0;
 //}
