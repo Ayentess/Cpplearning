@@ -1504,9 +1504,9 @@
 //	return 0;
 //}
 
-//#include<iostream>
-//#include<fstream>
-//#include<vector>
+//#include <iostream>
+//#include <fstream>
+//#include <vector>
 //
 //using namespace std;
 //
@@ -1514,30 +1514,31 @@
 //{
 //    friend void test();
 //public:
-//	Student();
+//    Student() : m_math(0), m_english(0), m_chinese(0), m_average(0) {}
 //
+//    void InputInfo(); // 新增：用于输入学生信息
 //    void GetAverage();
 //
 //protected:
-//	char m_name[64];
-//	char m_id[64];
-//	double m_math;
-//	double m_english;
-//	double m_chinese;
+//    char m_name[64];
+//    char m_id[64];
+//    double m_math;
+//    double m_english;
+//    double m_chinese;
 //    double m_average;
 //};
 //
-//Student::Student()
+//void Student::InputInfo()
 //{
-//	cout<< "请输入姓名：" << endl;
+//    cout << "请输入姓名：" << endl;
 //    cin >> m_name;
-//    cout<< "请输入学号：" << endl;
+//    cout << "请输入学号：" << endl;
 //    cin >> m_id;
-//    cout<< "请输入数学成绩：" << endl;
+//    cout << "请输入数学成绩：" << endl;
 //    cin >> m_math;
-//    cout<< "请输入英语成绩：" << endl;
+//    cout << "请输入英语成绩：" << endl;
 //    cin >> m_english;
-//    cout<< "请输入语文成绩：" << endl;
+//    cout << "请输入语文成绩：" << endl;
 //    cin >> m_chinese;
 //    GetAverage();
 //}
@@ -1545,17 +1546,17 @@
 //void Student::GetAverage()
 //{
 //    double avg = (m_math + m_english + m_chinese) / 3;
-//    m_average=avg;
+//    m_average = avg;
 //}
 //
 //void test()
 //{
 //    ofstream outfile;
-//    outfile.open("test04.txt", ios::out|ios::binary);
+//    outfile.open("test04.txt", ios::out | ios::binary);
 //
 //    if (!outfile)
 //    {
-//        cout<< "打开文件失败" << endl;
+//        cout << "打开文件失败" << endl;
 //        exit(1);
 //    }
 //
@@ -1563,31 +1564,73 @@
 //
 //    for (int i = 0; i < 5; i++)
 //    {
-//        cout<< "请输入第" << i + 1 << "个学生的信息：" << endl;
-//        students.push_back(Student());
+//        cout << "请输入第" << i + 1 << "个学生的信息：" << endl;
+//        Student s;
+//        s.InputInfo(); // 调用 InputInfo 函数来输入学生信息
+//        students.push_back(s);
 //    }
 //
 //    for (int i = 0; i < students.size(); i++)
 //    {
-//        outfile.write((char*)&students[i].m_name, sizeof(students[i].m_name));
-//        outfile.write((char*)&students[i].m_id, sizeof(students[i].m_id));
-//        outfile.write((char*)&students[i].m_math, sizeof(students[i].m_math));
-//        outfile.write((char*)&students[i].m_english, sizeof(students[i].m_english));
-//        outfile.write((char*)&students[i].m_chinese, sizeof(students[i].m_chinese));
-//        outfile.write((char*)&students[i].m_average, sizeof(students[i].m_average));
+//        outfile.write(students[i].m_name, sizeof(students[i].m_name));
+//        outfile.write(students[i].m_id, sizeof(students[i].m_id));
+//        outfile.write((char*)(&students[i].m_math), sizeof(students[i].m_math));
+//        outfile.write((char*)(&students[i].m_english), sizeof(students[i].m_english));
+//        outfile.write((char*)(&students[i].m_chinese), sizeof(students[i].m_chinese));
+//        outfile.write((char*)(&students[i].m_average), sizeof(students[i].m_average));
 //    }
 //
 //    outfile.close();
 //
-//    cout<< "写入文件成功" << endl;
+//    cout << "写入文件成功" << endl;
+//
+//    // 开始读取文件内容
+//    ifstream infile;
+//    infile.open("test04.txt", ios::in | ios::binary);
+//
+//    if (!infile)
+//    {
+//        cout << "打开文件失败" << endl;
+//        exit(1);
+//    }
+//
+//    cout << "\n开始读取文件内容：" << endl;
+//
+//    while (true)
+//    {
+//        Student s;
+//
+//        infile.read(s.m_name, sizeof(s.m_name));
+//
+//        if (infile.eof()) // 检查是否已到文件末尾
+//        {
+//            break;
+//        }
+//
+//        infile.read(s.m_id, sizeof(s.m_id));
+//        infile.read((char*)(&s.m_math), sizeof(s.m_math));
+//        infile.read((char*)(&s.m_english), sizeof(s.m_english));
+//        infile.read((char*)(&s.m_chinese), sizeof(s.m_chinese));
+//        infile.read((char*)(&s.m_average), sizeof(s.m_average));
+//
+//        // 输出学生信息
+//        cout << "姓名：" << s.m_name << endl;
+//        cout << "学号：" << s.m_id << endl;
+//        cout << "数学成绩：" << s.m_math << endl;
+//        cout << "英语成绩：" << s.m_english << endl;
+//        cout << "语文成绩：" << s.m_chinese << endl;
+//        cout << "平均分：" << s.m_average << endl;
+//        cout << "-------------------" << endl;
+//    }
+//
+//    infile.close();
 //}
 //
 //int main()
 //{
 //    test();
-//	return 0;
+//    return 0;
 //}
-
 
 //#include<iostream>
 //#include<vector>
@@ -1745,3 +1788,247 @@
 //    }
 //    return 0;
 //}
+
+//#include<iostream>
+//#include<fstream>
+//#include<string>
+//
+//using namespace std;
+//
+//int main()
+//{
+//	ifstream iofile;
+//	iofile.open("test03.txt", ios::in);
+//
+//	if (!iofile)
+//	{
+//		cout << "打开文件失败" << endl;
+//		return 1;
+//	}
+//
+//	ofstream outfile;
+//	outfile.open("test03.txt", ios::out);
+//
+//	string line;//line存储每一行字符串
+//	int linenum = 1;
+//
+//	while (getline(iofile, line))//getline读取每一行字符串
+//	{
+//		outfile << linenum << ":" << line << endl;
+//		linenum++;
+//	}
+//
+//	iofile.close();
+//	outfile.close();
+//
+//	cout << "插入行数成功！" << endl;
+//
+//	return 0;
+//}
+
+//#include<iostream>
+//#include<fstream>
+//#include<string>
+//#include<vector>
+//
+//using namespace std;
+//
+//int main()
+//{
+//	fstream iofile;
+//	iofile.open("test03.txt", ios::in);
+//
+//	if (!iofile)
+//	{
+//		cout << "打开文件失败" << endl;
+//		return 1;
+//	}
+//
+//	vector<string> lines;
+//	string line;//line存储每一行字符串
+//	int linenum = 1;
+//
+//	while (getline(iofile, line))//getline读取每一行字符串
+//	{
+//		lines.push_back(line);//存储在容器中
+//	}
+//	iofile.close();
+//
+//	fstream outfile;
+//	outfile.open("test03.txt", ios::out);
+//
+//	for (int i = 0; i < lines.size(); i++)
+//	{
+//		outfile << linenum << ":" << lines[i] << endl;
+//		linenum++;
+//	}
+//	outfile.close();
+//
+//	cout << "插入行数成功！" << endl;
+//
+//	return 0;
+//}
+
+//#include <iostream>
+//#include <fstream>
+//#include <vector>
+//
+//using namespace std;
+//
+//class Student
+//{
+//    friend void test();
+//public:
+//
+//    void InputInfo();
+//    void GetAverage();
+//
+//protected:
+//    char m_name[64];
+//    char m_id[64];
+//    double m_math;
+//    double m_english;
+//    double m_chinese;
+//    double m_average;
+//};
+//
+//void Student::InputInfo()
+//{
+//    cout << "请输入姓名：" << endl;
+//    cin >> m_name;
+//    cout << "请输入学号：" << endl;
+//    cin >> m_id;
+//    cout << "请输入数学成绩：" << endl;
+//    cin >> m_math;
+//    cout << "请输入英语成绩：" << endl;
+//    cin >> m_english;
+//    cout << "请输入语文成绩：" << endl;
+//    cin >> m_chinese;
+//    GetAverage();
+//}
+//
+//void Student::GetAverage()
+//{
+//    double avg = (m_math + m_english + m_chinese) / 3;
+//    m_average = avg;
+//}
+//
+//void test()
+//{
+//    ofstream outfile;
+//    outfile.open("test04.txt", ios::out | ios::binary);
+//
+//    if (!outfile)
+//    {
+//        cout << "打开文件失败" << endl;
+//        exit(1);
+//    }
+//
+//    vector<Student> students;
+//
+//    for (int i = 0; i < 5; i++)
+//    {
+//        cout << "请输入第" << i + 1 << "个学生的信息：" << endl;
+//        Student s;
+//        s.InputInfo(); // 调用 InputInfo 函数来输入学生信息
+//        students.push_back(s);
+//    }
+//
+//    for (int i = 0; i < students.size(); i++)
+//    {
+//        outfile.write(students[i].m_name, sizeof(students[i].m_name));
+//        outfile.write(students[i].m_id, sizeof(students[i].m_id));
+//        outfile.write((char*)(&students[i].m_math), sizeof(students[i].m_math));
+//        outfile.write((char*)(&students[i].m_english), sizeof(students[i].m_english));
+//        outfile.write((char*)(&students[i].m_chinese), sizeof(students[i].m_chinese));
+//        outfile.write((char*)(&students[i].m_average), sizeof(students[i].m_average));
+//    }
+//
+//    outfile.close();
+//
+//    cout << "写入文件成功" << endl;
+//
+//    // 开始读取文件内容
+//    ifstream infile;
+//    infile.open("test04.txt", ios::in | ios::binary);
+//
+//    if (!infile)
+//    {
+//        cout << "打开文件失败" << endl;
+//        exit(1);
+//    }
+//
+//    cout << "\n开始读取文件内容：" << endl;
+//
+//    vector<Student> students_read;
+//
+//    while (true)
+//    {
+//        Student s;
+//
+//        if (infile.eof())//到达末尾时结束
+//        {
+//            break;
+//        }
+//
+//        infile.read(s.m_name, sizeof(s.m_name));
+//        infile.read(s.m_id, sizeof(s.m_id));
+//        infile.read((char*)(&s.m_math), sizeof(s.m_math));
+//        infile.read((char*)(&s.m_english), sizeof(s.m_english));
+//        infile.read((char*)(&s.m_chinese), sizeof(s.m_chinese));
+//        infile.read((char*)(&s.m_average), sizeof(s.m_average));
+//
+//        students_read.push_back(s); // 将读取到的学生信息存储到 vector 中
+//    }
+//
+//    infile.close();
+//
+//    // 输出从文件中读取的学生信息
+//    for (size_t i = 0; i < students_read.size(); ++i)
+//    {
+//        cout << "姓名：" << students_read[i].m_name << endl;
+//        cout << "学号：" << students_read[i].m_id << endl;
+//        cout << "数学成绩：" << students_read[i].m_math << endl;
+//        cout << "英语成绩：" << students_read[i].m_english << endl;
+//        cout << "语文成绩：" << students_read[i].m_chinese << endl;
+//        cout << "平均分：" << students_read[i].m_average << endl;
+//        cout << "-------------------" << endl;
+//    }
+//}
+//
+//int main()
+//{
+//    test();
+//    return 0;
+//}
+
+#include<iostream>
+
+using namespace std;
+
+int lowbit(int x)
+{
+    return x & -x;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    while (n--)
+    {
+        int x;
+        cin >> x;
+        int s = 0;
+
+        for (int i = x; i; i -= lowbit(i))
+        {
+            s++;
+        }
+
+        cout << s << " ";
+    }
+
+    return 0;
+}
